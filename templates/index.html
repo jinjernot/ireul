@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GS1 Report</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body>
+    <table>
+        <tr>
+            <td class="login">
+                <header class="heading">
+                    <h1 class="">Sign in</h1>
+                    <h2 class="">GS1 Report</h2>
+                </header>
+                <br>
+                <div class="upload-container">
+                    <form method="POST" >
+                        <input type="password" name="password" placeholder="Password" class="custom-input"><br>
+                        <br>
+                        <input type="submit" value="Login" class="custom-button">
+                    </form>
+                    <div class="image-container">
+                        <img src="{{ url_for('static', filename='images/favicon.png') }}" alt="" width="50" height="50">
+                    </div>
+                </div>
+            </td>
+
+        </tr>
+    </table>
+
+</body>
+</html>

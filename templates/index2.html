@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GS1 Report</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+    <script src="{{ url_for('static', filename='js/processing.js') }}"></script>
+</head>
+
+<body>
+    <div class="hero-container">
+        <h1>GS1 Report</h1>
+        <img src="{{ url_for('static', filename='images/favicon.png') }}" alt="" class="right-aligned-image">
+    </div>
+
+    <div class="container">
+        <div class="menu">
+            <h4><a href="{{ url_for('mainpage') }}">Home</a><br></h4>
+        </div>
+        <div class="content">
+            <h3 class="">GS1 Report</h3><br>
+                <form action="upload-file" method="POST" enctype="multipart/form-data">
+                    <input type="file" name="Regular" class="custom-input">
+                    <br><br>
+                    <input type="submit" value="Upload" class="custom-button">
+                </form><br>
+        </div>    </div>
+    <div class="footer-container">
+        <h4>HP Inc. Restricted, Copyright 2023 HP Inc. Company.</h4>
+    </div>
+
+</body>
+
+</html>

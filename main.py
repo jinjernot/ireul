@@ -1,52 +1,48 @@
-import pandas as pd
-import os
+from flask import Flask, request, render_template, send_from_directory
+from data.gs1 import process_excel_files_in_folder
 
-def process_excel_files_in_folder():
-    try:
-        script_directory = os.path.dirname(os.path.abspath(__file__))
-        excel_files = [f for f in os.listdir(script_directory) if f.endswith(".xlsx")]
+import config
 
-        if not excel_files:
-            print("No Excel files found in the folder.")
-            return
+app = Flask(__name__)
+app.use_static_for = 'static'
 
-        for excel_file in excel_files:
-            input_file_path = os.path.join(script_directory, excel_file)
-            
-            # Specify the data types for columns GS1CompanyPrefix and GTIN as 'str' (string)
-            dtype = {'GS1CompanyPrefix': str, 'GTIN': str}
-            df = pd.read_excel(input_file_path, dtype=dtype)
-            
-            df = pd.read_excel(input_file_path, dtype=dtype)
+# Configuration
+app.config.from_object(config)
 
-            gtin_targets = {}
+def is_valid_password(password):
+    return password == app.config['VALID_PASSWORD']
 
-            for index, row in df.iterrows():
-                gtin = row['GTIN']
-                target_markets = row['TargetMarkets']
-                
-                if gtin in gtin_targets:
-                    gtin_targets[gtin].append(target_markets)
-                else:
-                    gtin_targets[gtin] = [target_markets]
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in app.config['VALID_FILE_EXTENSIONS']
 
-            for gtin, targets in gtin_targets.items():
-                concatenated_targets = '~'.join(map(str, targets))
-                df.loc[df['GTIN'] == gtin, 'TargetMarkets'] = concatenated_targets
 
-            df.drop_duplicates(subset='GTIN', keep='first', inplace=True)
-            output_file_name = f"{os.path.splitext(excel_file)[0]}-output.xlsx"
-            output_file_path = os.path.join(script_directory, output_file_name)
-            
-            # Save the DataFrame to Excel with the specified data types
-            writer = pd.ExcelWriter(output_file_path, engine='openpyxl')
-            df.to_excel(writer, index=False, sheet_name='Sheet1', float_format='0')  # Use custom format '0'
-            writer.save()
-            
-            print(f"Processed '{excel_file}' and saved as '{output_file_path}'")
+@app.route('/', methods=['GET', 'POST'])
+def upload_file():
+    if request.method == 'POST':
+        password = request.form.get('password')
+        if is_valid_password(password):
+            return render_template('index2.html')
+        else:
+            return render_template('error_password.html')
+    return render_template('index.html')
 
-    except Exception as e:
-        print(f"An error occurred: {str(e)}")
+@app.route('/upload-file', methods=['POST'])
+def process_file():
+    if 'Regular' in request.files:
+        file = request.files['Regular']
+        try:
+            if allowed_file(file.filename):
+                process_excel_files_in_folder(file)
+                return send_from_directory('.', filename='GS1-report.xlsx', as_attachment=True)
+        except Exception as e:
+            print(e)
+            return render_template('error.html'), 500
+    return render_template('error.html'), 400
+
+
+@app.route('/main')
+def mainpage():
+    return render_template('index2.html')
 
 if __name__ == "__main__":
-    process_excel_files_in_folder()
+        app.run(debug=True)

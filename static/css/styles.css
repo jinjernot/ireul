@@ -1,0 +1,184 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+
+  @font-face {
+    font-family: 'Forma DJR Micro' ;
+    src: url(fonts/forma-djr-micro.otf);
+    src: url(fonts/forma-djr-micro.otf?#iefix) format("embedded-opentype"), url("fonts/forma-djr-micro.woff") format("woff"), url("fonts/forma-djr-micro.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal; }
+
+  @font-face {
+    font-family: 'Forma DJR Display Greek';
+    src: url(fonts/forma-djr-display.otf);
+    src: url(fonts/forma-djr-display.otf?#iefix) format("embedded-opentype"), url("fonts/forma-djr-display.woff") format("woff"), url("fonts/forma-djr-display.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal; }
+    
+  body {
+    background-color: #e6e6e6;
+    font-family: Forma DJR Micro;
+  }
+
+  a {
+    text-decoration: none;
+    color: #000000;
+  }
+ 
+  .heading {
+    margin: 0 auto;
+    color: #000000;
+  }
+
+  .heading > h1 {
+    font-size: 25pt;
+  }
+  
+  .heading > h2 {
+    font-size: 20pt;
+  }
+
+  h3 {
+    padding-top: 20px;
+    padding-bottom: 5px;
+    font-size: 16pt;
+  }
+
+  h4 {
+    padding-bottom: 5px;
+    font-size: 14pt;
+  }
+
+  .upload-container {
+    margin: 0 auto;
+    color: black;
+  }
+
+  .custom-button {
+    border: 1px solid #e6e6e6;
+    background-color: #0096d6;
+    color: #fff;  
+    border-radius: 10px;
+    outline: none; 
+    transition: background-color 0.3s ease-in-out; 
+    width: 290px;
+    height: 45px;
+    font-size: 16px;
+  }
+  .image-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 20%;
+  }
+
+  .custom-button:hover {
+    background-color: #0081b3;
+  }
+
+  .custom-button:focus {
+    border-color: #bfbfbf; 
+  }
+
+  .custom-input {
+    border: 1px solid #e6e6e6;
+    border-radius: 10px;
+    padding: 10px 20px; 
+    outline: none; 
+    height: 25px;
+    width: 250px; 
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+  }
+
+  .custom-input:hover {
+    border: 1px solid #0096d6;
+  }
+
+  .custom-input:focus {
+    border: 1px solid #0096d6;
+  }
+
+  table {
+    margin: 0 auto;
+    border: 0;
+    
+  }
+
+  .login {
+    border: 2px solid #0096d6;
+    background-color: #ffffff;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-top: 100px;
+    padding-bottom: 200px;
+    border-radius: 25px;
+    
+  }
+
+  .menu, .content {
+    padding: 10px; /* Adding some padding for better appearance */
+    flex: 1; /* Let both columns grow to take available space */
+    background-color: #ffffff;
+    border: 1px solid #e6e6e6;;
+}
+
+.menu {
+    flex: 0 0 25%
+}
+
+  .content {
+    width: 75%;
+    vertical-align: top;
+    background-color: #ffffff;
+    padding: 2%;
+  }
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+  
+  .hero-container {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 15%;
+    margin-right: 15%;
+    padding: 2%;
+    border: 5px;
+    vertical-align: top
+  }
+
+  .hero-container img {
+      width: 50px;
+      height: 50px;
+      align-items: right;
+  }
+
+  hr {
+    margin: 10px 0;
+    border: none;
+    border-top: 1px solid #ccc;
+  }
+
+  .footer-container {
+    background-color: #ffffff;
+    margin-left: 15%;
+    margin-right: 15%;
+    padding: 1%;
+    text-align: right;
+  }
+  pre {
+    border: 1px solid #0096d6;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f8f8f8;
+    overflow: auto;
+  }
