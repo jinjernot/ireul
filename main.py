@@ -3,6 +3,7 @@ from data.gs1 import process_excel_files_in_folder
 
 import config
 
+
 app = Flask(__name__)
 app.use_static_for = 'static'
 
