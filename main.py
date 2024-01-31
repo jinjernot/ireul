@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template, send_from_directory
-from data.gs1 import process_excel_files_in_folder
+from app.gs1 import process_excel_files_in_folder
 
 import config
 

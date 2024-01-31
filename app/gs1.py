@@ -4,7 +4,7 @@ def process_excel_files_in_folder(file):
     dtype = {'GS1COMPANYPREFIX': str, 'GTIN': str}
     try:
         df = pd.read_excel(file.stream, engine='openpyxl', dtype=dtype)
-        df = pd.read_excel(file, engine='openpyxl', dtype=dtype)
+        #df = pd.read_excel(file, engine='openpyxl', dtype=dtype)
 
         # Data manipulation in 'DESC1LANGUAGE' column
         df['DESC1LANGUAGE'].replace({'chs': 'zh', 'cht': 'zh', 'zhh': 'zh', 'mx': 'es', 'rs': 'sr'}, inplace=True)
@@ -26,7 +26,7 @@ def process_excel_files_in_folder(file):
 
         # Save the DataFrame to Excel with the specified data types
         writer = pd.ExcelWriter('/home/garciagi/GS1/GS1-report.xlsx', engine='openpyxl')
-        writer = pd.ExcelWriter('GS1-report.xlsx', engine='openpyxl')
+        #writer = pd.ExcelWriter('GS1-report.xlsx', engine='openpyxl')
         df.to_excel(writer, index=False, sheet_name='Sheet1', float_format='0')
         writer.save()
 
